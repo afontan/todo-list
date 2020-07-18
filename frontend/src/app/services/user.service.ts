@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import {  throwError } from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import {User} from "../models/user";
+import {TodoList} from "../models/todolist";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private REST_API_SERVER = "http://localhost:8080/users";
+  private USER_URL = "http://localhost:8080/users";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -26,10 +27,16 @@ export class UserService {
   }
 
   login(user: User){
-    return this.httpClient.post(this.REST_API_SERVER+"/login", user).pipe(catchError(this.handleError));
+    return this.httpClient.post(this.USER_URL+"/login", user).pipe(catchError(this.handleError));
   }
 
   signup(user: User){
-    return this.httpClient.post(this.REST_API_SERVER+"/sign-up", user).pipe(catchError(this.handleError));
+    return this.httpClient.post(this.USER_URL+"/sign-up", user).pipe(catchError(this.handleError));
+  }
+
+  getUserTodoList(): Observable<TodoList[]> {
+    let userId = localStorage.getItem('userId');
+    // @ts-ignore
+    return this.httpClient.get(this.USER_URL+"/"+userId+"/todo-lists").pipe(catchError(this.handleError));
   }
 }

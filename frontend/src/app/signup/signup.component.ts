@@ -36,14 +36,11 @@ export class SignupComponent implements OnInit {
     this.loginInvalid = false;
     this.formSubmitAttempt = false;
     if (this.loginForm.valid) {
-      try {
-        console.log(this.user);
-        await this.userService.signup(this.user).subscribe(resp => {
-          this.router.navigate(['/login']);
-        });
-      } catch (err) {
+      await this.userService.signup(this.user).subscribe(resp => {
+        this.router.navigate(['/login']);
+      }, error => {
         this.loginInvalid = true;
-      }
+      });
     } else {
       this.formSubmitAttempt = true;
     }

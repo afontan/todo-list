@@ -1,0 +1,23 @@
+<ng-container *ngIf="true">
+  <mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>TodoList</span>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="side" class="example-sidenav"
+                 [fixedInViewport]="false" [fixedTopGap]="0"
+                 [fixedBottomGap]="0">
+      <mat-list>
+        <mat-list-item *ngFor="let todoList of todoLists"><button mat-stroked-button class="todo-list">{{ todoList.title }}</button></mat-list-item>
+        <mat-list-item><button mat-stroked-button class="todo-list">+</button></mat-list-item>
+      </mat-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <p>Contenido</p>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</ng-container>

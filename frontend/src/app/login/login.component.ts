@@ -11,7 +11,7 @@ import {User} from "../models/user";
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  public loginInvalid: boolean;
+  public loginInvalid: boolean = false;
   private formSubmitAttempt: boolean;
   user: User = {
     email: "",
@@ -36,14 +36,13 @@ export class LoginComponent implements OnInit {
     this.loginInvalid = false;
     this.formSubmitAttempt = false;
     if (this.loginForm.valid) {
-      try {
-        console.log(this.user);
-        await this.userService.login(this.user).subscribe(resp => {
-          console.log(resp);
-        });
-      } catch (err) {
+      await this.userService.login(this.user).subscribe(resp => {
+        localStorage.setItem('token', resp['token']);
+        localStorage.setItem('userId', resp['user']['id']);
+        this.router.navigate(['/home']);
+      }, error => {
         this.loginInvalid = true;
-      }
+    });
     } else {
       this.formSubmitAttempt = true;
     }
