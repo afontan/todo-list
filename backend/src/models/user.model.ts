@@ -18,10 +18,9 @@ import {TodoList} from './todo-list.model';
 })
 export class User extends Entity {
   @property({
-    type: 'string',
+    type: 'number',
     id: true,
-    generated: false,
-    defaultFn: 'uuidv4',
+    generated: true,
   })
   id: string;
 

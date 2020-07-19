@@ -1,6 +1,13 @@
 version: '3'
 
 services:
+  front:
+    build: frontend
+    depends_on:
+      - web
+    ports:
+    - "80:80"
+    restart: on-failure
   web:
     build: backend
     depends_on:
