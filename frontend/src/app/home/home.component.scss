@@ -3,9 +3,14 @@ mat-sidenav-container {
 }
 
 mat-sidenav{
-  width: 250px;
+  width: 350px;
 }
 
 .todo-list {
   width: 100% !important;
+  overflow: hidden;
+}
+
+.todo-list-content {
+  padding: 30px;
 }
