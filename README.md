@@ -11,6 +11,3 @@ Then visit localhost, enjoy!
 ## WIP
 - AuthGuard for authenticated routes
 - Improve UX
-
-## Screenshots
-
