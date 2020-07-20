@@ -2,9 +2,8 @@
 TodoList app implemented with Loopback and Angular
 
 ## How to run
-``bash
-docker-compose build &&
-docker-compose up
+``
+docker-compose build && docker-compose up
 ``
 Then visit localhost, enjoy!
 
